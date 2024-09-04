@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Team Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Team Names and Wins</h1>
+        <form action="/generate_tournament" method="POST">
+            <input type="hidden" name="num_teams" value="{{ num_teams }}">
+            {% for i in range(1, num_teams + 1) %}
+                <div>
+                    <label for="team_{{i}}">Team {{i}} Name: </label>
+                    <input type="text" id="team_{{i}}" name="team_{{i}}_name" required>
+                    <label for="wins_{{i}}">Team {{i}} Wins: </label>
+                    <input type="number" id="wins_{{i}}" name="team_{{i}}_wins" min="0" required>
+                </div>
+                <br>
+            {% endfor %}
+            <button type="submit">Generate Tournament</button>
+        </form>
+    </div>
+</body>
+</html>
